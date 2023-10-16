@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "magic_models",
+  "info": {
+    "singularName": "magic-model",
+    "pluralName": "magic-models",
+    "displayName": "Magic"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "model": {
+      "allowedTypes": [
+        "files"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}
