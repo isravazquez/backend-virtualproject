@@ -677,6 +677,43 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiLuminarteProjectLuminarteProject
+  extends Schema.CollectionType {
+  collectionName: 'luminarte_projects';
+  info: {
+    singularName: 'luminarte-project';
+    pluralName: 'luminarte-projects';
+    displayName: 'LuminArte';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required & Attribute.Unique;
+    slug: Attribute.UID<'api::luminarte-project.luminarte-project', 'name'> &
+      Attribute.Required;
+    description: Attribute.Text;
+    models: Attribute.Media;
+    images: Attribute.Media;
+    videos: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::luminarte-project.luminarte-project',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::luminarte-project.luminarte-project',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiMagicModelMagicModel extends Schema.CollectionType {
   collectionName: 'magic_models';
   info: {
@@ -761,6 +798,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::luminarte-project.luminarte-project': ApiLuminarteProjectLuminarteProject;
       'api::magic-model.magic-model': ApiMagicModelMagicModel;
       'api::project.project': ApiProjectProject;
     }
