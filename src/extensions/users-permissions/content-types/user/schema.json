@@ -65,7 +65,7 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "ContentAcces": {
+    "contentAcces": {
       "type": "string"
     }
   }
