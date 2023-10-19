@@ -20,7 +20,8 @@ module.exports = ({ env }) => ({
                 uploadStream: {
                     ACL: null
                 },
-            }
+            },
+            sizeLimit: 1000 * 1024 * 1024 // 256mb in bytes
         },
     }
 });
