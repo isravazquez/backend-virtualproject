@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "vazarte_models",
+  "info": {
+    "singularName": "vazarte-model",
+    "pluralName": "vazarte-models",
+    "displayName": "Vazarte"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "model": {
+      "allowedTypes": [
+        "files"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "images": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

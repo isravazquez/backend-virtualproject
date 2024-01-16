@@ -816,6 +816,40 @@ export interface ApiProjectProject extends Schema.CollectionType {
   };
 }
 
+export interface ApiVazarteModelVazarteModel extends Schema.CollectionType {
+  collectionName: 'vazarte_models';
+  info: {
+    singularName: 'vazarte-model';
+    pluralName: 'vazarte-models';
+    displayName: 'Vazarte';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    slug: Attribute.UID<'api::vazarte-model.vazarte-model', 'name'> &
+      Attribute.Required;
+    model: Attribute.Media;
+    images: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::vazarte-model.vazarte-model',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::vazarte-model.vazarte-model',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -836,6 +870,7 @@ declare module '@strapi/types' {
       'api::magic-model.magic-model': ApiMagicModelMagicModel;
       'api::max-model.max-model': ApiMaxModelMaxModel;
       'api::project.project': ApiProjectProject;
+      'api::vazarte-model.vazarte-model': ApiVazarteModelVazarteModel;
     }
   }
 }
