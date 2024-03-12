@@ -677,6 +677,41 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiContenedorModelContenedorModel
+  extends Schema.CollectionType {
+  collectionName: 'contenedor_models';
+  info: {
+    singularName: 'contenedor-model';
+    pluralName: 'contenedor-models';
+    displayName: 'Contenedor';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required & Attribute.Unique;
+    slug: Attribute.UID<'api::contenedor-model.contenedor-model', 'name'> &
+      Attribute.Required;
+    model: Attribute.Media;
+    images: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::contenedor-model.contenedor-model',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::contenedor-model.contenedor-model',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiLuminarteProjectLuminarteProject
   extends Schema.CollectionType {
   collectionName: 'luminarte_projects';
@@ -866,6 +901,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::contenedor-model.contenedor-model': ApiContenedorModelContenedorModel;
       'api::luminarte-project.luminarte-project': ApiLuminarteProjectLuminarteProject;
       'api::magic-model.magic-model': ApiMagicModelMagicModel;
       'api::max-model.max-model': ApiMaxModelMaxModel;
